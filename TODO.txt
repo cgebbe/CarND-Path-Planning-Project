@@ -1,0 +1,127 @@
+# TODOS
+X Look at solutions from other people!
+X get overview of repo by watchin path planning walkthrough 
+	https://www.youtube.com/watch?v=3QP3hJHm4WM
+. implement code: stay on lane (s+=i, d=6) @ 18:00
+. make path smooth
+	. either change getXY function (preferred, would also help collisions!)
+	. OR implement motion controller
+. implement stay in lane behavior (match speed of cars in front of us)
+. implement lane changing behavior
+	. check collision detection - how good can it be - is it reliable?!
+
+
+
+
+Pipelines
+
+# Mithi
+see https://medium.com/@mithi/reflections-on-designing-a-virtual-highway-path-planner-part-2-3-392bc6cf11e7
+
+. get sensor data
+	- what is current pos and velocity of ego-vehicle?
+	- where are other cars (now and in future)?
+
+. decide behavior
+	. input
+		sensor data
+	. output 
+		behavior
+	. method
+		- finite state machine with 6 states:
+			init (slowly accelerate), stay lane, prepare left/right, switch left/right
+			-> do I really need preparation state? Guess not. Makes things more complicated...
+			-> Just check whether lane changing is better -> ya esta!
+		- based on current state:
+			calulate cost for each potential switch
+			calculate cost for each option
+		- cost function
+			theory
+				. feasibility (possible driving params) 
+				. safety (no collision, inside road, ...)
+				. legality  (v_max, distance to next car)
+				. comfort 
+				. efficiency
+			practice
+				for each potential state, evaluate...
+					feasability
+						. Possibility of future state, e.g. lane -1 impossible
+					safety
+						. Likelihood of collision with car in front
+						. Likelihood of collision with car in back (lane change!)
+						. Collision apparently difficult because of conversion?!
+							-> Maybe easier to just check distances...
+					legality
+						? (already taken into account?)
+					comfort
+						? (lane change only if necessary, but lower as efficiency!)
+					efficiency
+						. Likelihood of reaching target velocity (~velocity of car in front)
+						. Freedom of movement, i.e. middle lane = good
+			Scale everything to [1,10), so that top definitely more important!
+				
+		states
+			lane keep
+				d - stay near center
+				s - drive at target speed or match speed of vehicle ahead
+			prepare lane change
+				d - stay near center
+				s - attempt to match position and speed of "gap" in desired lane
+			lane change (only stay here for one cycle!)
+				d - move left/right
+				s - <same as lane keep>
+			
+
+. generate path
+	- input
+		desired behavior (end point / end point area?)
+		start and end points (s, °s, °°s, d, °d, °°d)
+			start point easy
+			end point at delta_t = 1.6s (from https://medium.com/@mithi/reflections-on-designing-a-virtual-highway-path-planner-part-3-3-a36bf629d239)
+				°°d=0, °d=0, d=desired behavior
+				°°s=0 (debatable...), °s=target speed, s=(dt * °s) ?!
+					-> speed will be different anyhow?!
+	- output
+		- path as s(t) =  a_0 + ... a_5 * t^5
+				and d(t) = b_0 + ... b_5 * t^5
+	- method
+		. simple polynomial fitting ?!
+			for s: 6 unkowns, 3 initial conditions, 3 final conditions
+			for d: -- same --
+			-> should be easy...
+		. check 
+			feasability 
+			safety
+			legality
+			comfort (jerk, min/max acc! If reached, vary input!)
+			efficiency
+			(see slides with many arrows, where some paths are discarded9
+		- maybe also predictions of other cars?
+			see model / data based approaches
+			-> behavior planning NOT necessary
+
+
+. "Motion controller" 
+	. We already have s(t), d(t)
+	. Now smoothen it, so that it does not violate any conditions...
+
+. convert path for controller
+	. input:
+		s(t), d(t)
+		unused waypoints from previous path (from simulator)
+	. output
+		waypoints in (x,y) coordinates for every 0.02s
+	. method
+		IF (s,d) -> (x,y) conversion would be perfect, we would be ready by now?
+			method gives us s(d) and d(t) fulfilling all our requirements
+			maybe only need to check that °°s does not exceed °°a~(°°s² +°°d²)
+		HOWEVER, (s,d) -> (x,y) is NOT perfect.
+			-> Thus, we need to make sure (again?!) that path is smooth...
+			from path planning workthrough video from udacity
+				1. take last two points from previous trajectory in GCS
+				2. Project points 30m, 60m, 90m ahead of car (s,d) and convert to GCS
+				3. convert GCS to VCS (x,y)
+				4. Fit 5-degree polynomial to VCS 
+				5. Generate new points from polynomial in 0.02s (take into account v_max!)
+				6. Convert from VCS to GCS
+	
