@@ -6,6 +6,21 @@
 
 using namespace std;
 
+struct Path {
+    vector<double> x;
+    vector<double> y;
+};
+
+struct OtherCar {
+    double id;
+    double x;
+    double y;
+    double vx;
+    double vy;
+    double s;
+    double d;
+};
+
 struct CarPos {
     double x;
     double y;
@@ -29,4 +44,4 @@ struct Map {
 
 struct::Map get_map();
 
-#endif MAP_H
+#endif //MAP_H

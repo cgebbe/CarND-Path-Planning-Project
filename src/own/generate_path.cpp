@@ -1,88 +1,13 @@
 #include <vector>
 #include "generate_path.hpp"
+#include "other_cars.hpp"
 #include "../helpers.hpp"
 #include "../../thirdparty/spline.h"
-
-struct::Path get_next_path(struct::CarPos& car_pos,
-                           struct::Path path_remaining,
-                           struct::Map& map)
-{
-    car_pos.yaw = deg2rad(car_pos.yaw);
-
-    if (path_remaining.x.size() >= 8) {
-        // if remaining path still has multiple points, simply return remaining path
-        return path_remaining;
-    }
-    else {
-        if (path_remaining.x.size() < 4 ) {
-            /* Empty remaining path should only occur at the beginning or when debugging.
-             * Problem: Without remaining path, no last velocity can be estimated
-             * Solution -> fake remaining path with very slow velocity
-             */
-            path_remaining.x.clear();
-            path_remaining.y.clear();
-            double v_slow = 0.01;
-            for (double dt=-0.060; dt<=0.001; dt+=0.020) {
-                double x_behind = car_pos.x + v_slow * dt * cos(car_pos.yaw);
-                double y_behind = car_pos.y + v_slow * dt * sin(car_pos.yaw);
-                path_remaining.x.push_back(x_behind);
-                path_remaining.y.push_back(y_behind);
-            }
-
-            // Set only one anchor point 50m far away in center lane
-            struct::Path anchor_points;
-            double next_s = car_pos.s + 50;
-            double next_d = 6; // center = 0, d_lane = 4m, d=6m -> center of middle lane
-            std::vector<double> xy = convert_sd_to_xy(next_s, next_d, map);
-            anchor_points.x.push_back(xy[0]);
-            anchor_points.y.push_back(xy[1]);
-
-            // based on anchor points and remaining path, estimate actual path
-            double dt_end = 4;
-            double v_end = 44 * 0.44704;
-            double dv_end = 3 * 0.44704;
-            struct::Path path = smoothen_path(anchor_points,
-                                              path_remaining,
-                                              car_pos,
-                                              dt_end,
-                                              v_end,
-                                              dv_end
-                                              );
-            return path;
-        }
-        else {
-            // append a few anchor points spaced 30m, 60m, 90m apart
-            struct::Path anchor_points;
-            int num_points = 4;
-            for (int i = 0; i < num_points; ++i) {
-                double next_s = car_pos.s + (i+1)*30;
-                double next_d = 6; // center = 0, d_lane = 4m, d=6m -> center of middle lane
-                std::vector<double> xy = convert_sd_to_xy(next_s, next_d, map);
-                anchor_points.x.push_back(xy[0]);
-                anchor_points.y.push_back(xy[1]);
-            }
-
-            // based on anchor points and remaining path, estimate actual path
-            double dt_end = 1.0;
-            double v_end = 47.5 * 0.44704;
-            double dv_end = 0;
-            struct::Path path = smoothen_path(anchor_points,
-                                              path_remaining,
-                                              car_pos,
-                                              dt_end,
-                                              v_end,
-                                              dv_end
-                                              );
-            return path;
-
-        }
-    }
-}
 
 struct::Path smoothen_path(struct::Path anchor_points,
                            struct::Path path_remaining,
                            struct::CarPos car_pos,
-                           double dt_end,
+                           double t_end,
                            double v_end,
                            double dv_end
                            )
@@ -112,8 +37,8 @@ struct::Path smoothen_path(struct::Path anchor_points,
     tk::spline v_per_dt;
     vector<double> fit_t = {-0.001,
                              0,
-                             dt_end,
-                             dt_end + 0.001,
+                             t_end,
+                             t_end + 0.001,
                             };
     vector<double> fit_v = {last_state.v - 0.001 * last_state.dv,
                             last_state.v,
@@ -122,17 +47,17 @@ struct::Path smoothen_path(struct::Path anchor_points,
                            };
     v_per_dt.set_points(fit_t, fit_v);
 
-    // generate velocity vector
+    // generate velocity vector (only for debugging purposes, not necessary)
     vector<double> velocities;
-    for (double t = 0.020; t<dt_end; t+=0.020) {
+    for (double t = 0.020; t<t_end; t+=0.020) {
         velocities.push_back(v_per_dt(t));
     }
 
-    // start with remaining path in VCS coordinate and add to that newly sampled points
+    // starting from remaining path in VCS coordinate, add newly sampled points from spline
     struct::Path path_sampled_VCS = convert_MCS_to_VCS(path_remaining, last_pos);
     double x_VCS = 0;
     double dt = 0.020;
-    for (double t = dt; t<dt_end; t+=dt) {
+    for (double t = dt; t<t_end; t+=dt) {
         double velocity = v_per_dt(t);
         x_VCS += dt * velocity;
         path_sampled_VCS.x.push_back(x_VCS);

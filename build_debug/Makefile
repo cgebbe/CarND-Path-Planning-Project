@@ -204,32 +204,59 @@ src/map.cpp.s:
 	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/map.cpp.s
 .PHONY : src/map.cpp.s
 
-src/own/decide_behavior.o: src/own/decide_behavior.cpp.o
+src/own/behavior_machine.o: src/own/behavior_machine.cpp.o
 
-.PHONY : src/own/decide_behavior.o
+.PHONY : src/own/behavior_machine.o
 
 # target to build an object file
-src/own/decide_behavior.cpp.o:
-	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o
-.PHONY : src/own/decide_behavior.cpp.o
+src/own/behavior_machine.cpp.o:
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o
+.PHONY : src/own/behavior_machine.cpp.o
 
-src/own/decide_behavior.i: src/own/decide_behavior.cpp.i
+src/own/behavior_machine.i: src/own/behavior_machine.cpp.i
 
-.PHONY : src/own/decide_behavior.i
+.PHONY : src/own/behavior_machine.i
 
 # target to preprocess a source file
-src/own/decide_behavior.cpp.i:
-	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.i
-.PHONY : src/own/decide_behavior.cpp.i
+src/own/behavior_machine.cpp.i:
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.i
+.PHONY : src/own/behavior_machine.cpp.i
 
-src/own/decide_behavior.s: src/own/decide_behavior.cpp.s
+src/own/behavior_machine.s: src/own/behavior_machine.cpp.s
 
-.PHONY : src/own/decide_behavior.s
+.PHONY : src/own/behavior_machine.s
 
 # target to generate assembly for a file
-src/own/decide_behavior.cpp.s:
-	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.s
-.PHONY : src/own/decide_behavior.cpp.s
+src/own/behavior_machine.cpp.s:
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.s
+.PHONY : src/own/behavior_machine.cpp.s
+
+src/own/behavior_states.o: src/own/behavior_states.cpp.o
+
+.PHONY : src/own/behavior_states.o
+
+# target to build an object file
+src/own/behavior_states.cpp.o:
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o
+.PHONY : src/own/behavior_states.cpp.o
+
+src/own/behavior_states.i: src/own/behavior_states.cpp.i
+
+.PHONY : src/own/behavior_states.i
+
+# target to preprocess a source file
+src/own/behavior_states.cpp.i:
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.i
+.PHONY : src/own/behavior_states.cpp.i
+
+src/own/behavior_states.s: src/own/behavior_states.cpp.s
+
+.PHONY : src/own/behavior_states.s
+
+# target to generate assembly for a file
+src/own/behavior_states.cpp.s:
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.s
+.PHONY : src/own/behavior_states.cpp.s
 
 src/own/generate_path.o: src/own/generate_path.cpp.o
 
@@ -258,32 +285,32 @@ src/own/generate_path.cpp.s:
 	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/generate_path.cpp.s
 .PHONY : src/own/generate_path.cpp.s
 
-src/own/smooth_path.o: src/own/smooth_path.cpp.o
+src/own/other_cars.o: src/own/other_cars.cpp.o
 
-.PHONY : src/own/smooth_path.o
+.PHONY : src/own/other_cars.o
 
 # target to build an object file
-src/own/smooth_path.cpp.o:
-	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o
-.PHONY : src/own/smooth_path.cpp.o
+src/own/other_cars.cpp.o:
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o
+.PHONY : src/own/other_cars.cpp.o
 
-src/own/smooth_path.i: src/own/smooth_path.cpp.i
+src/own/other_cars.i: src/own/other_cars.cpp.i
 
-.PHONY : src/own/smooth_path.i
+.PHONY : src/own/other_cars.i
 
 # target to preprocess a source file
-src/own/smooth_path.cpp.i:
-	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.i
-.PHONY : src/own/smooth_path.cpp.i
+src/own/other_cars.cpp.i:
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/other_cars.cpp.i
+.PHONY : src/own/other_cars.cpp.i
 
-src/own/smooth_path.s: src/own/smooth_path.cpp.s
+src/own/other_cars.s: src/own/other_cars.cpp.s
 
-.PHONY : src/own/smooth_path.s
+.PHONY : src/own/other_cars.s
 
 # target to generate assembly for a file
-src/own/smooth_path.cpp.s:
-	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.s
-.PHONY : src/own/smooth_path.cpp.s
+src/own/other_cars.cpp.s:
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/other_cars.cpp.s
+.PHONY : src/own/other_cars.cpp.s
 
 # Help Target
 help:
@@ -303,15 +330,18 @@ help:
 	@echo "... src/map.o"
 	@echo "... src/map.i"
 	@echo "... src/map.s"
-	@echo "... src/own/decide_behavior.o"
-	@echo "... src/own/decide_behavior.i"
-	@echo "... src/own/decide_behavior.s"
+	@echo "... src/own/behavior_machine.o"
+	@echo "... src/own/behavior_machine.i"
+	@echo "... src/own/behavior_machine.s"
+	@echo "... src/own/behavior_states.o"
+	@echo "... src/own/behavior_states.i"
+	@echo "... src/own/behavior_states.s"
 	@echo "... src/own/generate_path.o"
 	@echo "... src/own/generate_path.i"
 	@echo "... src/own/generate_path.s"
-	@echo "... src/own/smooth_path.o"
-	@echo "... src/own/smooth_path.i"
-	@echo "... src/own/smooth_path.s"
+	@echo "... src/own/other_cars.o"
+	@echo "... src/own/other_cars.i"
+	@echo "... src/own/other_cars.s"
 .PHONY : help
 
 

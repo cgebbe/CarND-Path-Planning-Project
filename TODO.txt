@@ -147,29 +147,60 @@ Smoothen path
 		-> should not be super hard?!
 		
 		
+		
+		
+Issue: 
+	We need 
 
 
 Option 3:
 
-	// get current rate and velocities from previous path
-	get (yaw, dyaw) as well as (v, dv, ddv) from last three points of previous path
-	dv[i] = v[i]-v[i-1]
-	ddv[i] = dv[i] - dv[i-1] = (v[i]-v[i-1]) - (v[i-1]-v[i-2]) = v[i] - 2*v[i-1] + v[i-2]
+	path = prev_path
+
+	// get current rate and velocities from last three points of previous path
+	yaw = ...
+	dyaw = ...
+	v = ...
+	dv = ...
+	ddv = ...
 	
-	
-	for each step
+	for N new points ... 
 	
 		// set yaw rate
 		yaw_goal = get_heading_to_waypoint(wp,dmin,dmax)
 		yaw_diff = yaw_goal - yaw
-		dyaw += np.clip(yaw_diff * dyaw_gain, -dyaw_min, dyaw_max)
+		dyaw += np.clip(yaw_diff * dyaw_gain, -dyaw_min, +dyaw_max)
 		yaw = yaw + dyaw
 		
 		// set velocity
 		vel_goal = <see above>
 		vel_diff = vel_goal - vel
-		ddvel += sign(vel_diff) * 
+		ddvel += np.clip(vel_diff * ddvel_gain, -ddvel_max, +ddvel_max)
+		dvel += ddvel
+		vel += dvel
+		
+		// calculate displacement
+		ds = dt * vel * cos(yaw) //dt = 0.020s
+		s += ds
+		path.push_back()
+		
+	return path
 	
 	
+State
+public:
+	get_next_best_state
+		for (state : possible_next_states)
+			cost = ...
+		state = argmin_state (cost)
+		--> state
 	
-	
+	get_next_path
+		smoothen path(...)
+		--> next_path
+		
+
+private:
+	possible_next_states
+
+

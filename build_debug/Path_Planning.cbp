@@ -102,7 +102,16 @@
 		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/map.h">
 			<Option target="path_planning"/>
 		</Unit>
-		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/decide_behavior.cpp">
+		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_machine.cpp">
+			<Option target="path_planning"/>
+		</Unit>
+		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_machine.h">
+			<Option target="path_planning"/>
+		</Unit>
+		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_states.cpp">
+			<Option target="path_planning"/>
+		</Unit>
+		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_states.hpp">
 			<Option target="path_planning"/>
 		</Unit>
 		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/generate_path.cpp">
@@ -111,7 +120,10 @@
 		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/generate_path.hpp">
 			<Option target="path_planning"/>
 		</Unit>
-		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/smooth_path.cpp">
+		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.cpp">
+			<Option target="path_planning"/>
+		</Unit>
+		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.hpp">
 			<Option target="path_planning"/>
 		</Unit>
 		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/CMakeLists.txt">

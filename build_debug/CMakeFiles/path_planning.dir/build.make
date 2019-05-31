@@ -129,33 +129,57 @@ CMakeFiles/path_planning.dir/src/map.cpp.o.provides: CMakeFiles/path_planning.di
 CMakeFiles/path_planning.dir/src/map.cpp.o.provides.build: CMakeFiles/path_planning.dir/src/map.cpp.o
 
 
-CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o: CMakeFiles/path_planning.dir/flags.make
-CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o: ../src/own/decide_behavior.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o -c /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/decide_behavior.cpp
+CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o: CMakeFiles/path_planning.dir/flags.make
+CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o: ../src/own/behavior_machine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o -c /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_machine.cpp
 
-CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/decide_behavior.cpp > CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.i
+CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_machine.cpp > CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.i
 
-CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/decide_behavior.cpp -o CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.s
+CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_machine.cpp -o CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.s
 
-CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o.requires:
+CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o.requires:
 
-.PHONY : CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o.requires
+.PHONY : CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o.requires
 
-CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o.provides: CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o.requires
-	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o.provides.build
-.PHONY : CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o.provides
+CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o.provides: CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o.requires
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o.provides.build
+.PHONY : CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o.provides
 
-CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o.provides.build: CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o
+CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o.provides.build: CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o
+
+
+CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o: CMakeFiles/path_planning.dir/flags.make
+CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o: ../src/own/behavior_states.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o -c /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_states.cpp
+
+CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_states.cpp > CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.i
+
+CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_states.cpp -o CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.s
+
+CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o.requires:
+
+.PHONY : CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o.requires
+
+CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o.provides: CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o.requires
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o.provides.build
+.PHONY : CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o.provides
+
+CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o.provides.build: CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o
 
 
 CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o: CMakeFiles/path_planning.dir/flags.make
 CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o: ../src/own/generate_path.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o -c /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/generate_path.cpp
 
 CMakeFiles/path_planning.dir/src/own/generate_path.cpp.i: cmake_force
@@ -177,28 +201,28 @@ CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o.provides: CMakeFiles/pa
 CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o.provides.build: CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o
 
 
-CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o: CMakeFiles/path_planning.dir/flags.make
-CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o: ../src/own/smooth_path.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o -c /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/smooth_path.cpp
+CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o: CMakeFiles/path_planning.dir/flags.make
+CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o: ../src/own/other_cars.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o -c /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.cpp
 
-CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/smooth_path.cpp > CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.i
+CMakeFiles/path_planning.dir/src/own/other_cars.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/path_planning.dir/src/own/other_cars.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.cpp > CMakeFiles/path_planning.dir/src/own/other_cars.cpp.i
 
-CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/smooth_path.cpp -o CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.s
+CMakeFiles/path_planning.dir/src/own/other_cars.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/path_planning.dir/src/own/other_cars.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.cpp -o CMakeFiles/path_planning.dir/src/own/other_cars.cpp.s
 
-CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o.requires:
+CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.requires:
 
-.PHONY : CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o.requires
+.PHONY : CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.requires
 
-CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o.provides: CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o.requires
-	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o.provides.build
-.PHONY : CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o.provides
+CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.provides: CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.requires
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.provides.build
+.PHONY : CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.provides
 
-CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o.provides.build: CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o
+CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.provides.build: CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o
 
 
 # Object files for target path_planning
@@ -206,9 +230,10 @@ path_planning_OBJECTS = \
 "CMakeFiles/path_planning.dir/src/helpers.cpp.o" \
 "CMakeFiles/path_planning.dir/src/main.cpp.o" \
 "CMakeFiles/path_planning.dir/src/map.cpp.o" \
-"CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o" \
+"CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o" \
+"CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o" \
 "CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o" \
-"CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o"
+"CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o"
 
 # External object files for target path_planning
 path_planning_EXTERNAL_OBJECTS =
@@ -216,12 +241,13 @@ path_planning_EXTERNAL_OBJECTS =
 path_planning: CMakeFiles/path_planning.dir/src/helpers.cpp.o
 path_planning: CMakeFiles/path_planning.dir/src/main.cpp.o
 path_planning: CMakeFiles/path_planning.dir/src/map.cpp.o
-path_planning: CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o
+path_planning: CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o
+path_planning: CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o
 path_planning: CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o
-path_planning: CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o
+path_planning: CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o
 path_planning: CMakeFiles/path_planning.dir/build.make
 path_planning: CMakeFiles/path_planning.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable path_planning"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable path_planning"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/path_planning.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -232,9 +258,10 @@ CMakeFiles/path_planning.dir/build: path_planning
 CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/helpers.cpp.o.requires
 CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/main.cpp.o.requires
 CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/map.cpp.o.requires
-CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o.requires
+CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o.requires
+CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o.requires
 CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o.requires
-CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o.requires
+CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.requires
 
 .PHONY : CMakeFiles/path_planning.dir/requires
 

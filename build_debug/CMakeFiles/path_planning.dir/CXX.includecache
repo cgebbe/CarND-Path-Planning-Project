@@ -101,8 +101,8 @@ json.hpp
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/json.hpp
 map.h
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/map.h
-own/generate_path.hpp
-/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/generate_path.hpp
+own/behavior_machine.h
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_machine.h
 
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/map.cpp
 vector
@@ -122,13 +122,39 @@ vector
 ../thirdparty/spline.h
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/thirdparty/spline.h
 
-/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/decide_behavior.cpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_machine.cpp
+behavior_machine.h
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_machine.h
+
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_machine.h
+behavior_states.hpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_states.hpp
+generate_path.hpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/generate_path.hpp
+
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_states.cpp
+behavior_states.hpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_states.hpp
+../helpers.hpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/helpers.hpp
+other_cars.hpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.hpp
+
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_states.hpp
+behavior_machine.h
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_machine.h
+../map.h
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/map.h
+generate_path.hpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/generate_path.hpp
 
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/generate_path.cpp
 vector
 -
 generate_path.hpp
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/generate_path.hpp
+other_cars.hpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.hpp
 ../helpers.hpp
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/helpers.hpp
 ../../thirdparty/spline.h
@@ -142,7 +168,15 @@ vector
 math.h
 -
 
-/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/smooth_path.cpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.cpp
+other_cars.hpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.hpp
+
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.hpp
+../map.h
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/map.h
+vector
+-
 
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/thirdparty/spline.h
 cstdio

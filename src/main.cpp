@@ -9,7 +9,8 @@
 #include "helpers.hpp"
 #include "json.hpp"
 #include "map.h"
-#include "own/generate_path.hpp"
+//#include "own/generate_path.hpp"
+#include "own/behavior_machine.h"
 
 // for convenience
 using nlohmann::json;
@@ -19,12 +20,15 @@ using std::vector;
 
 int main() {
 
+    // create machine
+    StateMachine behavior_planner = StateMachine();
+
     // get map waypoints from file
     struct::Map map = get_map();
 
     // get messages
     uWS::Hub h;
-    h.onMessage([&map]
+    h.onMessage([&map, &behavior_planner]
                 (uWS::WebSocket<uWS::SERVER> ws,
                 char *data,
                 size_t length,
@@ -51,13 +55,13 @@ int main() {
                     car_pos.y = j[1]["y"];
                     car_pos.s = j[1]["s"];
                     car_pos.d= j[1]["d"];
-                    car_pos.yaw = j[1]["yaw"];
+                    car_pos.yaw = deg2rad(j[1]["yaw"]);
                     car_pos.speed = j[1]["speed"];
 
                     // Remaining path data given to the Planner in previous step
                     struct::Path path_remaining = {
                         j[1]["previous_path_x"],
-                                j[1]["previous_path_y"]
+                        j[1]["previous_path_y"]
                     };
                     //prev_path.x = j[1]["previous_path_x"];
                     //prev_path.y = j[1]["previous_path_y"];
@@ -69,22 +73,28 @@ int main() {
 
                     // Sensor Fusion Data, a list of all other cars on the same side
                     //   of the road.
-                    vector<vector<double>> other_cars = j[1]["sensor_fusion"];
-                    for (int i=0; i<other_cars.size(); i++) {
-                        auto other_car = other_cars[i];
-                        double id= other_car[0];
-                        double x= other_car[1];
-                        double y= other_car[2];
-                        double vx = other_car[3];
-                        double vy = other_car[4];
-                        double s = other_car[5];
-                        double d = other_car[6];
+                    vector<vector<double>> other_cars_raw = j[1]["sensor_fusion"];
+                    vector<OtherCar> other_cars;
+                    for (int i=0; i<other_cars_raw.size(); i++) {
+                        vector<double> other_car_raw = other_cars_raw[i];
+                        OtherCar car;
+                        car.id= other_car_raw[0];
+                        car.x= other_car_raw[1];
+                        car.y= other_car_raw[2];
+                        car.vx = other_car_raw[3];
+                        car.vy = other_car_raw[4];
+                        car.s = other_car_raw[5];
+                        car.d = other_car_raw[6];
+                        other_cars.push_back(car);
                     }
 
 
                     // ==================================================
                     // NEW
-                    struct::Path next_path = get_next_path(car_pos, path_remaining, map);
+                    Path next_path = behavior_planner.get_next_path(car_pos,
+                                                                    path_remaining,
+                                                                    other_cars,
+                                                                    map);
 
                     // ==================================================
 

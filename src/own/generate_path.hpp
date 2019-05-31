@@ -1,12 +1,9 @@
+#ifndef GENERATE_PATH_H
+#define GENERATE_PATH_H
+
 #include "../map.h"
 #include <vector>
 #include <math.h>
-
-struct Path {
-    vector<double> x;
-    vector<double> y;
-};
-
 
 struct CarState {
     double x;
@@ -21,11 +18,6 @@ struct CarState {
 };
 
 
-struct::Path get_next_path(struct::CarPos& car_pos,
-                           struct::Path path_remaining,
-                           struct::Map& map);
-
-
 struct::Path smoothen_path(struct::Path anchor_points,
                            struct::Path path_remaining,
                            struct::CarPos car_pos,
@@ -38,6 +30,7 @@ struct::CarState get_last_car_state(struct::Path path);
 
 
 struct::Path convert_MCS_to_VCS(struct::Path path, CarPos car_pos);
+
 struct::Path convert_VCS_to_MCS(struct::Path path, CarPos car_pos);
 
 int get_next_anchor(struct::Path anchor_points, int idx_anchor_last, double x, double y);
@@ -79,3 +72,6 @@ template <typename T>
 inline int sign(T val) {
     return (T(0) < val) - (val < T(0));
 }
+
+
+#endif //GENERATE_PATH_H

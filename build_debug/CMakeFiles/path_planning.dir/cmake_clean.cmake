@@ -2,9 +2,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/path_planning.dir/src/helpers.cpp.o"
   "CMakeFiles/path_planning.dir/src/main.cpp.o"
   "CMakeFiles/path_planning.dir/src/map.cpp.o"
-  "CMakeFiles/path_planning.dir/src/own/decide_behavior.cpp.o"
+  "CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o"
+  "CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o"
   "CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o"
-  "CMakeFiles/path_planning.dir/src/own/smooth_path.cpp.o"
+  "CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o"
   "path_planning.pdb"
   "path_planning"
 )
