@@ -8,115 +8,107 @@ struct::Path get_next_path(struct::CarPos& car_pos,
                            struct::Map& map)
 {
 
+    // Problem: at the beginning, there is no remaining path. -> Fake one by simulating point behind!
     if (path_remaining.x.size() == 0 ) {
+        double v_barely = 0.01;
+        for (double dt=-0.040; dt<=0.001; dt+=0.020) {
+            double x_behind = car_pos.x + v_barely * dt * cos(car_pos.yaw);
+            double y_behind = car_pos.y + v_barely * dt * sin(car_pos.yaw);
+            path_remaining.x.push_back(x_behind);
+            path_remaining.y.push_back(y_behind);
+        }
+    }
+
+    if (path_remaining.x.size() >= 5) {
+        // if remaining path still has multiple points, do not create new path
+        return path_remaining;
+    }
+    else {
+        // append a few anchor points spaced 30m, 60m, 90m apart
         struct::Path anchor_points;
         double vel_in_mph = 47.5;
         double vel_in_m_per_s = vel_in_mph * 0.44704;
         double dist_per_20ms_in_m = vel_in_m_per_s * 0.020;
-        int num_points = 20;
+        int num_points = 4;
         for (int i = 0; i < num_points; ++i) {
-            double next_s = car_pos.s + (i+1)*dist_per_20ms_in_m;
+            double next_s = car_pos.s + (i+1)*30;
             double next_d = 6; // center = 0, d_lane = 4m, d=6m -> center of middle lane
             std::vector<double> xy = convert_sd_to_xy(next_s, next_d, map);
 
             anchor_points.x.push_back(xy[0]);
             anchor_points.y.push_back(xy[1]);
         }
-        return anchor_points;
-    }
-    else if (path_remaining.x.size() > 0) {
-        if (path_remaining.x.size() < 10) {
-            // define anchor points spaced wide apart
-            struct::Path anchor_points;
-            double vel_in_mph = 47.5;
-            double vel_in_m_per_s = vel_in_mph * 0.44704;
-            double dist_per_20ms_in_m = vel_in_m_per_s * 0.020;
-            int num_points = 40;
-            for (int i = 0; i < num_points; ++i) {
-                double next_s = car_pos.s + (i+1)*dist_per_20ms_in_m*10;
-                double next_d = 6; // center = 0, d_lane = 4m, d=6m -> center of middle lane
-                std::vector<double> xy = convert_sd_to_xy(next_s, next_d, map);
 
-                anchor_points.x.push_back(xy[0]);
-                anchor_points.y.push_back(xy[1]);
-            }
-
-            // based on anchor points and remaining path, estimate actual path
-            struct::Path path = smoothen_path(anchor_points, path_remaining, vel_in_m_per_s);
-            return path;
-        }
-        else {
-            // simply return existing remaining path
-            return path_remaining;
-        }
+        // based on anchor points and remaining path, estimate actual path
+        struct::Path path = smoothen_path(anchor_points, path_remaining, car_pos, vel_in_m_per_s);
+        return path;
     }
 }
 
 struct::Path smoothen_path(struct::Path anchor_points,
                            struct::Path path_remaining,
+                           struct::CarPos car_pos,
                            double v_goal)
 {
-    // get car state at last point of remaining path
-    CarState last = get_last_car_state(path_remaining);
-    double x = last.x;
-    double y = last.y;
-    double v = last.v;
-    double dv = last.dv;
-    double ddv = last.ddv;
-    double yaw = last.yaw;
-    double dyaw = last.dyaw;
+    CarState last_state = get_last_car_state(path_remaining);
+    CarPos last_pos;
+    last_pos.x = last_state.x;
+    last_pos.y = last_state.y;
+    last_pos.yaw = last_state.yaw;
 
-    // control params
-    double dyaw_gain = 0.1;
-    double dyaw_max = 2./360.*2.*pi();
-    double ddv_gain = 0.1;
-    double ddv_max = 10.;
-    double dv_max = 5.;
-    double dt = 0.020; // in s
-
-    int num_points = 100;
-    int idx_anchor = 0;
-    for (int i=0; i< num_points; i++) {
-        // set yaw rate
-        idx_anchor = get_next_anchor(anchor_points, idx_anchor, x, y);
-        double yaw_goal = get_yaw(x, y, anchor_points.x[idx_anchor], anchor_points.y[idx_anchor]);
-        double yaw_diff = yaw_goal - yaw;
-        //double dyaw_control = clip(yaw_diff * dyaw_gain, -dyaw_max, +dyaw_max);
-        double dyaw_control = sign(yaw_diff) * dyaw_gain;
-        dyaw += dyaw_control;
-        yaw += dyaw;
-
-        // set velocity
-        double v_diff = v_goal - v;
-        //double ddv_control = clip(v_diff * ddv_gain, -ddv_max, +ddv_max);
-        double ddv_control = sign(v_diff) * ddv_gain;
-        ddv = clip(ddv + ddv_control, -ddv_max, +ddv_max);
-        dv = clip(dv + ddv, -dv_max, +dv_max);
-        v += dv;
-
-        // calculate displacement
-        x += dt * v * cos(yaw);
-        y += dt * v * sin(yaw);
-        path_remaining.x.push_back(x);
-        path_remaining.y.push_back(y);
+    // fuse anchor points and remaining path points into a common path list
+    Path path_in_MCS = path_remaining;
+    for(int i=0; i<anchor_points.x.size(); i++) {
+        path_in_MCS.x.push_back(anchor_points.x[i]);
+        path_in_MCS.y.push_back(anchor_points.y[i]);
     }
 
-    return path_remaining;
+    // Convert all points from map coordinate system (CS) into vehicle CS
+    Path path_in_VCS = convert_MCS_to_VCS(path_in_MCS, last_pos);
+
+    // fit y(x) in vehicle CS
+    tk::spline y_per_x_in_VCS;
+    y_per_x_in_VCS.set_points(path_in_VCS.x, path_in_VCS.y);
+
+    // sample points such that velocity = target velocity
+    struct::Path path_sampled_VCS = convert_MCS_to_VCS(path_remaining, last_pos);
+    for (double dt = 0.020; dt<2; dt+=0.020) {
+        double x_VCS = dt * v_goal;
+        path_sampled_VCS.x.push_back(x_VCS);
+        path_sampled_VCS.y.push_back(y_per_x_in_VCS(x_VCS));
+    }
+
+    // convert sampled points from vehicle CS to map CS
+    Path path_sampled_in_MCS = convert_VCS_to_MCS(path_sampled_VCS, last_pos);
+
+    return path_sampled_in_MCS;
 }
 
-int get_next_anchor(struct::Path anchor_points, int idx_anchor_last, double x, double y)
+
+struct::Path convert_MCS_to_VCS(struct::Path path, CarPos car_pos)
 {
-    double dist_min_in_m = 20;
-    assert(0 <= idx_anchor_last && idx_anchor_last < anchor_points.x.size());
-    for (int idx_anchor = idx_anchor_last; idx_anchor < anchor_points.x.size(); idx_anchor++) {
-        double dist = calc_distance(x, y,
-                                    anchor_points.x[idx_anchor], anchor_points.y[idx_anchor]);
-        if (dist >= dist_min_in_m) {
-            return idx_anchor;
-        }
+    for (int i=0; i<path.x.size(); i++) {
+        double x = path.x[i]-car_pos.x;
+        double y = path.y[i]-car_pos.y;
+        path.x[i] = x * cos(-car_pos.yaw) - y * sin(-car_pos.yaw);
+        path.y[i] = x * sin(-car_pos.yaw) + y * cos(-car_pos.yaw);
     }
-    return 0;
+    return path;
 }
+
+
+struct::Path convert_VCS_to_MCS(struct::Path path, CarPos car_pos)
+{
+    for (int i=0; i<path.x.size(); i++) {
+        double x = path.x[i] * cos(car_pos.yaw) - path.y[i] * sin(car_pos.yaw);
+        double y = path.x[i] * sin(car_pos.yaw) + path.y[i] * cos(car_pos.yaw);
+        path.x[i] = x + car_pos.x;
+        path.y[i] = y + car_pos.y;
+    }
+    return path;
+}
+
+
 
 struct::CarState get_last_car_state(struct::Path path)
 {

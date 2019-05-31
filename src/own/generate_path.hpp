@@ -27,9 +27,14 @@ struct::Path get_next_path(struct::CarPos& car_pos,
 
 struct::Path smoothen_path(struct::Path anchor_points,
                            struct::Path path_remaining,
-                           double v_target);
+                           struct::CarPos car_pos,
+                           double v_goal);
 
 struct::CarState get_last_car_state(struct::Path path);
+
+
+struct::Path convert_MCS_to_VCS(struct::Path path, CarPos car_pos);
+struct::Path convert_VCS_to_MCS(struct::Path path, CarPos car_pos);
 
 int get_next_anchor(struct::Path anchor_points, int idx_anchor_last, double x, double y);
 
@@ -44,7 +49,12 @@ vector<double> calc_time_derivative(vector<double> x, double dt);
 void test_spline_xy();
 
 inline double get_last_elem(vector<double> x) {
-    return x[x.size()-1];
+    if (x.size() > 0) {
+        return x[x.size()-1];
+    }
+    else {
+        return 999;
+    }
 }
 
 inline double get_yaw(double x_start, double y_start, double x_end, double y_end) {
