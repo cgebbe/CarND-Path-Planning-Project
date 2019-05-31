@@ -25,10 +25,14 @@ struct::Path get_next_path(struct::CarPos& car_pos,
                            struct::Path path_remaining,
                            struct::Map& map);
 
+
 struct::Path smoothen_path(struct::Path anchor_points,
                            struct::Path path_remaining,
                            struct::CarPos car_pos,
-                           double v_goal);
+                           double dt_end,
+                           double v_end,
+                           double dv_end
+                           );
 
 struct::CarState get_last_car_state(struct::Path path);
 
