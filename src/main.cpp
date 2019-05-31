@@ -1,6 +1,7 @@
 #include <uWS/uWS.h>
 #include <string>
 #include <vector>
+#include <assert.h>
 
 //#include "../thirdparty/Eigen-3.3/Eigen/Core"
 //#include "../thirdparty/Eigen-3.3/Eigen/QR"
@@ -47,15 +48,19 @@ int main() {
                     // Get car position
                     struct::CarPos car_pos;
                     car_pos.x = j[1]["x"];
-                    car_pos.x = j[1]["y"];
+                    car_pos.y = j[1]["y"];
                     car_pos.s = j[1]["s"];
                     car_pos.d= j[1]["d"];
                     car_pos.yaw = j[1]["yaw"];
                     car_pos.speed = j[1]["speed"];
 
-                    // Previous path data given to the Planner
-                    vector<double> prev_path_x = j[1]["previous_path_x"];
-                    vector<double> prev_path_y = j[1]["previous_path_y"];
+                    // Remaining path data given to the Planner in previous step
+                    struct::Path path_remaining = {
+                        j[1]["previous_path_x"],
+                                j[1]["previous_path_y"]
+                    };
+                    //prev_path.x = j[1]["previous_path_x"];
+                    //prev_path.y = j[1]["previous_path_y"];
                     double end_path_s = j[1]["end_path_s"];
                     double end_path_d = j[1]["end_path_d"];
 
@@ -79,7 +84,8 @@ int main() {
 
                     // ==================================================
                     // NEW
-                    struct::path next_path = get_next_path(car_pos, map);
+                    struct::Path next_path = get_next_path(car_pos, path_remaining, map);
+
                     // ==================================================
 
                     json msgJson;

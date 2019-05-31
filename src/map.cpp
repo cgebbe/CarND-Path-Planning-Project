@@ -32,11 +32,16 @@ struct::Map get_map()
       iss >> s;
       iss >> d_x;
       iss >> d_y;
-      map.map_waypoints_x.push_back(x);
-      map.map_waypoints_y.push_back(y);
-      map.map_waypoints_s.push_back(s);
-      map.map_waypoints_dx.push_back(d_x);
-      map.map_waypoints_dy.push_back(d_y);
+      map.wp_x.push_back(x);
+      map.wp_y.push_back(y);
+      map.wp_s.push_back(s);
+      map.wp_dx.push_back(d_x);
+      map.wp_dy.push_back(d_y);
     }
+
+    // perform interpolation to get a smooth spline through the waypoints
+    map.spline_x.set_points(map.wp_s, map.wp_x);
+    map.spline_y.set_points(map.wp_s, map.wp_y);
+
     return map;
 }

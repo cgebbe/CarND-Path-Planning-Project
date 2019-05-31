@@ -17,6 +17,8 @@ map.h
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/map.h
 helpers.hpp
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/helpers.hpp
+../thirdparty/spline.h
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/thirdparty/spline.h
 
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/helpers.hpp
 math.h
@@ -91,6 +93,8 @@ string
 -
 vector
 -
+assert.h
+-
 helpers.hpp
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/helpers.hpp
 json.hpp
@@ -115,6 +119,8 @@ map.h
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/map.h
 vector
 -
+../thirdparty/spline.h
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/thirdparty/spline.h
 
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/decide_behavior.cpp
 
@@ -125,10 +131,26 @@ generate_path.hpp
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/generate_path.hpp
 ../helpers.hpp
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/helpers.hpp
+../../thirdparty/spline.h
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/thirdparty/spline.h
 
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/generate_path.hpp
 ../map.h
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/map.h
+vector
+-
+math.h
+-
 
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/smooth_path.cpp
+
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/thirdparty/spline.h
+cstdio
+-
+cassert
+-
+vector
+-
+algorithm
+-
 

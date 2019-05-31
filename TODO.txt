@@ -125,3 +125,51 @@ see https://medium.com/@mithi/reflections-on-designing-a-virtual-highway-path-pl
 				5. Generate new points from polynomial in 0.02s (take into account v_max!)
 				6. Convert from VCS to GCS
 	
+
+
+
+Smoothen path
+
+	Option 1:
+		simply take things from lecture.
+		Not beautiful, but hey, it works....
+		
+	Option 2 (Correct approach):
+		Actual spline fitting [xy](t) with constraints
+		However, there seem to be few libraries for that?
+		Also question of computational speed...
+			
+	Option 3 (Simulate driver):
+		Keep head on "next" waypoint <x> meters away
+			?!
+		do not turn too quickly
+		do not change velocity too quickly
+		-> should not be super hard?!
+		
+		
+
+
+Option 3:
+
+	// get current rate and velocities from previous path
+	get (yaw, dyaw) as well as (v, dv, ddv) from last three points of previous path
+	dv[i] = v[i]-v[i-1]
+	ddv[i] = dv[i] - dv[i-1] = (v[i]-v[i-1]) - (v[i-1]-v[i-2]) = v[i] - 2*v[i-1] + v[i-2]
+	
+	
+	for each step
+	
+		// set yaw rate
+		yaw_goal = get_heading_to_waypoint(wp,dmin,dmax)
+		yaw_diff = yaw_goal - yaw
+		dyaw += np.clip(yaw_diff * dyaw_gain, -dyaw_min, dyaw_max)
+		yaw = yaw + dyaw
+		
+		// set velocity
+		vel_goal = <see above>
+		vel_diff = vel_goal - vel
+		ddvel += sign(vel_diff) * 
+	
+	
+	
+	
