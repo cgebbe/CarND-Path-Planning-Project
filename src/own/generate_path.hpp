@@ -5,19 +5,6 @@
 #include <vector>
 #include <math.h>
 
-struct CarState {
-    double x;
-    double y;
-    double s;
-    double d;
-    double yaw;
-    double dyaw;
-    double v;
-    double dv;
-    double ddv;
-};
-
-
 struct::Path smoothen_path(struct::Path anchor_points,
                            struct::Path path_remaining,
                            struct::CarPos car_pos,

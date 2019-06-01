@@ -27,7 +27,20 @@ struct CarPos {
     double s;
     double d;
     double yaw;
-    double speed ;
+    double speed_in_mph;
+    double speed_in_meter_per_s;
+};
+
+struct CarState {
+    double x;
+    double y;
+    double s;
+    double d;
+    double yaw;
+    double dyaw;
+    double v;
+    double dv;
+    double ddv;
 };
 
 

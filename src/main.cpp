@@ -56,7 +56,8 @@ int main() {
                     car_pos.s = j[1]["s"];
                     car_pos.d= j[1]["d"];
                     car_pos.yaw = deg2rad(j[1]["yaw"]);
-                    car_pos.speed = j[1]["speed"];
+                    car_pos.speed_in_mph = j[1]["speed"];
+                    car_pos.speed_in_meter_per_s = car_pos.speed_in_mph * 0.44704;
 
                     // Remaining path data given to the Planner in previous step
                     struct::Path path_remaining = {
@@ -91,7 +92,7 @@ int main() {
 
                     // ==================================================
                     // NEW
-                    Path next_path = behavior_planner.get_next_path(car_pos,
+                    Path next_path = behavior_planner.decide_path(car_pos,
                                                                     path_remaining,
                                                                     other_cars,
                                                                     map);

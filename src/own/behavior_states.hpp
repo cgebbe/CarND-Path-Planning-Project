@@ -10,41 +10,84 @@ class StateMachine;
 
 class State {
 public:
-    virtual Path get_next_path(StateMachine& machine,
-                               CarPos& car_pos,
-                               Path& path_remaining,
-                               vector<OtherCar>& other_cars,
-                               Map& map);
     virtual ~State();
+    Path decide_path(StateMachine& machine,
+                     CarPos& car_pos,
+                     Path& path_remaining,
+                     vector<OtherCar>& other_cars,
+                     Map& map);
 protected:
     void set_state(StateMachine& machine,
                    State* state);
+    virtual State* decide_state(CarPos& car_pos,
+                               Path& path_remaining,
+                               vector<OtherCar>& other_cars,
+                               Map& map);
+    virtual Path get_path(CarPos& car_pos,
+                          Path& path_remaining,
+                          vector<OtherCar>& other_cars,
+                          Map& map);
 };
 
 
 class Init : public State {
 public:
-    virtual Path get_next_path(StateMachine& machine,
-                       CarPos& car_pos,
-                       Path& path_remaining,
-                       vector<OtherCar>& other_cars,
-                       Map& map);
+    Init(int id_lane);
     virtual ~Init();
+private:
+    virtual State* decide_state(CarPos& car_pos,
+                               Path& path_remaining,
+                               vector<OtherCar>& other_cars,
+                               Map& map);
+    virtual Path get_path(CarPos& car_pos,
+                          Path& path_remaining,
+                          vector<OtherCar>& other_cars,
+                          Map& map);
+    int m_id_lane;
+    int m_cnt_runs;
 };
 
 class KeepLane : public State {
 public:
-    KeepLane();
-    virtual Path get_next_path(StateMachine& machine,
-                       CarPos& car_pos,
-                       Path& path_remaining,
-                       vector<OtherCar>& other_cars,
-                       Map& map);
+    KeepLane(int id_lane);
     virtual ~KeepLane();
 private:
-    int lane_id;
+    virtual State* decide_state(CarPos& car_pos,
+                               Path& path_remaining,
+                               vector<OtherCar>& other_cars,
+                               Map& map);
+    virtual Path get_path(CarPos& car_pos,
+                          Path& path_remaining,
+                          vector<OtherCar>& other_cars,
+                          Map& map);
+    virtual float get_cost(CarPos& car_pos,
+                           Path& path_remaining,
+                           vector<OtherCar>& other_cars,
+                           Map& map);
+    int m_id_lane;
 };
 
+
+
+class ChangeLane : public State {
+public:
+    ChangeLane(int id_lane);
+    virtual ~ChangeLane();
+private:
+    virtual State* decide_state(CarPos& car_pos,
+                               Path& path_remaining,
+                               vector<OtherCar>& other_cars,
+                               Map& map);
+    virtual Path get_path(CarPos& car_pos,
+                          Path& path_remaining,
+                          vector<OtherCar>& other_cars,
+                          Map& map);
+    virtual float get_cost(CarPos& car_pos,
+                           Path& path_remaining,
+                           vector<OtherCar>& other_cars,
+                           Map& map);
+    int m_id_lane;
+};
 
 
 #endif // BEHAVIOR_STATES_H

@@ -1,34 +1,67 @@
 #include "behavior_states.hpp"
 #include "../helpers.hpp"
-#include "other_cars.hpp"
+#include "lane_costs.hpp"
 
-State::~State() {}
-Path State::get_next_path(StateMachine& machine,
-                         CarPos& car_pos,
-                         Path& path_remaining,
-                         vector<OtherCar>& other_cars,
-                         Map& map)
+
+State::~State(){}
+
+Path State::decide_path(StateMachine& machine,
+                        CarPos& car_pos,
+                        Path& path_remaining,
+                        vector<OtherCar>& other_cars,
+                        Map& map)
+{
+    State* next_state = decide_state(car_pos, path_remaining, other_cars, map);
+    set_state(machine, next_state);
+    Path path = next_state->get_path(car_pos, path_remaining, other_cars, map);
+    return path;
+}
+
+State* State::decide_state(CarPos &car_pos, Path &path_remaining, vector<OtherCar> &other_cars, Map &map)
 {}
+
+Path State::get_path(CarPos &car_pos, Path &path_remaining, vector<OtherCar> &other_cars, Map &map)
+{}
+
 void State::set_state(StateMachine &machine, State *state)
 {
-    State* aux = machine.mState;
-    machine.mState = state;
-    delete aux;
+    if (state == machine.mState) {
+        return;
+    }
+    else {
+        State* aux = machine.mState;
+        machine.mState = state;
+        delete aux;
+    }
 }
 
 
 //===================================
 
-Init::~Init() {}
-Path Init::get_next_path(StateMachine& machine,
-                         CarPos& car_pos,
-                         Path& path_remaining,
-                         vector<OtherCar>& other_cars,
-                         Map& map)
-{
-    // State Init should only be run for one loop, after that State KeepLane
-    set_state(machine, new KeepLane());
 
+Init::Init(int id_lane) {
+    m_id_lane = id_lane;
+    m_cnt_runs = 0;
+}
+Init::~Init() {}
+
+State* Init::decide_state(CarPos &car_pos, Path &path_remaining, vector<OtherCar> &other_cars, Map &map)
+{
+    if (m_cnt_runs == 0) {
+        m_cnt_runs++;
+        return this;
+    }
+    else {
+        State* next_state = new KeepLane(m_id_lane);
+        return next_state;
+    }
+}
+
+Path Init::get_path(CarPos& car_pos,
+                    Path& path_remaining,
+                    vector<OtherCar>& other_cars,
+                    Map& map)
+{
     /* Empty remaining path should only occur at the beginning or when debugging.
      * Problem: Without remaining path, no last velocity can be estimated
      * Solution -> fake remaining path with very slow velocity
@@ -66,50 +99,36 @@ Path Init::get_next_path(StateMachine& machine,
 }
 
 
+
 //===================================
 
-KeepLane::KeepLane() {
-    lane_id = 1;
+KeepLane::KeepLane(int id_lane){
+    m_id_lane = id_lane;
 }
 KeepLane::~KeepLane() {}
-Path KeepLane::get_next_path(StateMachine& machine,
-                             CarPos& car_pos,
-                             Path& path_remaining,
-                             vector<OtherCar>& other_cars,
-                             Map& map)
+State* KeepLane::decide_state(CarPos &car_pos, Path &path_remaining, vector<OtherCar> &other_cars, Map &map)
+{
+    if (path_remaining.x.size()<4) {
+        State* next_state = new Init(m_id_lane);
+        return next_state;
+    }
+    else {
+        return this;
+    }
+}
+
+Path KeepLane::get_path(CarPos& car_pos,
+                        Path& path_remaining,
+                        vector<OtherCar>& other_cars,
+                        Map& map)
 {
     if (path_remaining.x.size() >= 8) {
         // if remaining path still has multiple points, simply return it
         return path_remaining;
     }
-    else if (path_remaining.x.size() < 4) {
-        /* When the remaining path has less than 4 members, dv cannot be calculated.
-         * Without dv, the future velocity cannot be connected smoothly with the remaining path.
-         * Thus, start from scratch. Happens in debug node and is here for convenience.
-         */
-        set_state(machine, new Init());
-        return machine.get_next_path(car_pos,
-                                     path_remaining,
-                                     other_cars,
-                                     map);
-    }
     else {
-        /* "Normal" case
-         */
-
-        /* Usually, use 47.5 mph as target end speed
-         * However, if a car is in front of us, use its current speed as target speed
-         */
-        double v_end = 47.5 * 0.44704;
-        vector<OtherCar> cars_same_lane = get_cars_in_lane(other_cars, lane_id);
-        double s_last = 50; // threshold, forget anything more far away
-        for (auto car : cars_same_lane) {
-            if (car.s > car_pos.s) { // if car is in front
-                if (car.s - car_pos.s < s_last) { // if car is nearer than any previous car
-                    v_end = sqrt(car.vx*car.vx + car.vy*car.vy);
-                }
-            }
-        }
+        // get target speed for lane
+        TargetSpeed end = get_target_speed_for_lane(other_cars, car_pos, m_id_lane);
 
         // define anchor points to keep lane
         struct::Path anchor_points;
@@ -123,15 +142,20 @@ Path KeepLane::get_next_path(StateMachine& machine,
         }
 
         // based on anchor points and remaining path, estimate actual path
-        double t_end = 1.0;
-        double dv_end = 0;
         struct::Path path = smoothen_path(anchor_points,
                                           path_remaining,
                                           car_pos,
-                                          t_end,
-                                          v_end,
-                                          dv_end
+                                          end.t,
+                                          end.v_in_meter_per_s,
+                                          end.dv
                                           );
         return path;
     }
 }
+
+
+float KeepLane::get_cost(CarPos &car_pos, Path &path_remaining, vector<OtherCar> &other_cars, Map &map)
+{
+    return 0;
+}
+

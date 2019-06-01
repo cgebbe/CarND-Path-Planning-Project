@@ -187,8 +187,15 @@ Option 3:
 	return path
 	
 	
-State
+States
+	init
+	keep lane
+	change left
+	change right
+	
 public:
+	run()
+
 	get_next_best_state
 		for (state : possible_next_states)
 			cost = ...

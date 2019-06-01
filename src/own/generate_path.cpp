@@ -1,6 +1,6 @@
 #include <vector>
 #include "generate_path.hpp"
-#include "other_cars.hpp"
+#include "lane_costs.hpp"
 #include "../helpers.hpp"
 #include "../../thirdparty/spline.h"
 
@@ -28,6 +28,9 @@ struct::Path smoothen_path(struct::Path anchor_points,
 
     // Convert all points from map coordinate system (CS) into vehicle CS
     Path path_in_VCS = convert_MCS_to_VCS(path_in_MCS, last_pos);
+    double distance = sqrt(pow(get_last_elem(path_in_VCS.x),2) +
+                         pow(get_last_elem(path_in_VCS.y),2));
+    double correction_x_per_distance = get_last_elem(path_in_VCS.x) / distance;
 
     // fit y(x) in vehicle CS
     tk::spline y_per_x_in_VCS;
@@ -57,9 +60,16 @@ struct::Path smoothen_path(struct::Path anchor_points,
     struct::Path path_sampled_VCS = convert_MCS_to_VCS(path_remaining, last_pos);
     double x_VCS = 0;
     double dt = 0.020;
+    double velocity = last_state.v;
     for (double t = dt; t<t_end; t+=dt) {
-        double velocity = v_per_dt(t);
-        x_VCS += dt * velocity;
+        if (velocity < v_end) {
+            velocity += 0.15;
+        }
+        else {
+            velocity -= 0.15;
+        }
+        //double velocity = v_per_dt(t);
+        x_VCS += dt * velocity * correction_x_per_distance;
         path_sampled_VCS.x.push_back(x_VCS);
         path_sampled_VCS.y.push_back(y_per_x_in_VCS(x_VCS));
     }

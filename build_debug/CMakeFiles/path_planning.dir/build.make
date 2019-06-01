@@ -201,28 +201,28 @@ CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o.provides: CMakeFiles/pa
 CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o.provides.build: CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o
 
 
-CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o: CMakeFiles/path_planning.dir/flags.make
-CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o: ../src/own/other_cars.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o -c /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.cpp
+CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o: CMakeFiles/path_planning.dir/flags.make
+CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o: ../src/own/lane_costs.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o -c /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/lane_costs.cpp
 
-CMakeFiles/path_planning.dir/src/own/other_cars.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/path_planning.dir/src/own/other_cars.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.cpp > CMakeFiles/path_planning.dir/src/own/other_cars.cpp.i
+CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/lane_costs.cpp > CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.i
 
-CMakeFiles/path_planning.dir/src/own/other_cars.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/path_planning.dir/src/own/other_cars.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.cpp -o CMakeFiles/path_planning.dir/src/own/other_cars.cpp.s
+CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/lane_costs.cpp -o CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.s
 
-CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.requires:
+CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o.requires:
 
-.PHONY : CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.requires
+.PHONY : CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o.requires
 
-CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.provides: CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.requires
-	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.provides.build
-.PHONY : CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.provides
+CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o.provides: CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o.requires
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o.provides.build
+.PHONY : CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o.provides
 
-CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.provides.build: CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o
+CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o.provides.build: CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o
 
 
 # Object files for target path_planning
@@ -233,7 +233,7 @@ path_planning_OBJECTS = \
 "CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o" \
 "CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o" \
 "CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o" \
-"CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o"
+"CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o"
 
 # External object files for target path_planning
 path_planning_EXTERNAL_OBJECTS =
@@ -244,7 +244,7 @@ path_planning: CMakeFiles/path_planning.dir/src/map.cpp.o
 path_planning: CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o
 path_planning: CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o
 path_planning: CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o
-path_planning: CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o
+path_planning: CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o
 path_planning: CMakeFiles/path_planning.dir/build.make
 path_planning: CMakeFiles/path_planning.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable path_planning"
@@ -261,7 +261,7 @@ CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/map.cpp.
 CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o.requires
 CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o.requires
 CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o.requires
-CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o.requires
+CMakeFiles/path_planning.dir/requires: CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o.requires
 
 .PHONY : CMakeFiles/path_planning.dir/requires
 

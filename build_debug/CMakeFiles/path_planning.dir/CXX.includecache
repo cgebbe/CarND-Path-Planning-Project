@@ -137,8 +137,8 @@ behavior_states.hpp
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_states.hpp
 ../helpers.hpp
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/helpers.hpp
-other_cars.hpp
-/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.hpp
+lane_costs.hpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/lane_costs.hpp
 
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/behavior_states.hpp
 behavior_machine.h
@@ -153,8 +153,8 @@ vector
 -
 generate_path.hpp
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/generate_path.hpp
-other_cars.hpp
-/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.hpp
+lane_costs.hpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/lane_costs.hpp
 ../helpers.hpp
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/helpers.hpp
 ../../thirdparty/spline.h
@@ -168,11 +168,13 @@ vector
 math.h
 -
 
-/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.cpp
-other_cars.hpp
-/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.hpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/lane_costs.cpp
+lane_costs.hpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/lane_costs.hpp
+math.h
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/math.h
 
-/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.hpp
+/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/lane_costs.hpp
 ../map.h
 /mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/map.h
 vector

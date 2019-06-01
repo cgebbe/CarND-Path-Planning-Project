@@ -285,32 +285,32 @@ src/own/generate_path.cpp.s:
 	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/generate_path.cpp.s
 .PHONY : src/own/generate_path.cpp.s
 
-src/own/other_cars.o: src/own/other_cars.cpp.o
+src/own/lane_costs.o: src/own/lane_costs.cpp.o
 
-.PHONY : src/own/other_cars.o
+.PHONY : src/own/lane_costs.o
 
 # target to build an object file
-src/own/other_cars.cpp.o:
-	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o
-.PHONY : src/own/other_cars.cpp.o
+src/own/lane_costs.cpp.o:
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o
+.PHONY : src/own/lane_costs.cpp.o
 
-src/own/other_cars.i: src/own/other_cars.cpp.i
+src/own/lane_costs.i: src/own/lane_costs.cpp.i
 
-.PHONY : src/own/other_cars.i
+.PHONY : src/own/lane_costs.i
 
 # target to preprocess a source file
-src/own/other_cars.cpp.i:
-	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/other_cars.cpp.i
-.PHONY : src/own/other_cars.cpp.i
+src/own/lane_costs.cpp.i:
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.i
+.PHONY : src/own/lane_costs.cpp.i
 
-src/own/other_cars.s: src/own/other_cars.cpp.s
+src/own/lane_costs.s: src/own/lane_costs.cpp.s
 
-.PHONY : src/own/other_cars.s
+.PHONY : src/own/lane_costs.s
 
 # target to generate assembly for a file
-src/own/other_cars.cpp.s:
-	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/other_cars.cpp.s
-.PHONY : src/own/other_cars.cpp.s
+src/own/lane_costs.cpp.s:
+	$(MAKE) -f CMakeFiles/path_planning.dir/build.make CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.s
+.PHONY : src/own/lane_costs.cpp.s
 
 # Help Target
 help:
@@ -339,9 +339,9 @@ help:
 	@echo "... src/own/generate_path.o"
 	@echo "... src/own/generate_path.i"
 	@echo "... src/own/generate_path.s"
-	@echo "... src/own/other_cars.o"
-	@echo "... src/own/other_cars.i"
-	@echo "... src/own/other_cars.s"
+	@echo "... src/own/lane_costs.o"
+	@echo "... src/own/lane_costs.i"
+	@echo "... src/own/lane_costs.s"
 .PHONY : help
 
 

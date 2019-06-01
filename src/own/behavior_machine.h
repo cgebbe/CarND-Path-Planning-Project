@@ -14,10 +14,10 @@ class StateMachine
 public:
     StateMachine();
 
-    Path get_next_path(CarPos& car_pos,
-                       Path& path_remaining,
-                       vector<OtherCar>& other_cars,
-                       Map& map);
+    Path decide_path(CarPos& car_pos,
+                     Path& path_remaining,
+                     vector<OtherCar>& other_cars,
+                     Map& map);
     ~StateMachine();
 
 private:

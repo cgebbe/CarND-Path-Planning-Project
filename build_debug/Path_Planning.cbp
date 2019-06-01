@@ -120,10 +120,10 @@
 		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/generate_path.hpp">
 			<Option target="path_planning"/>
 		</Unit>
-		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.cpp">
+		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/lane_costs.cpp">
 			<Option target="path_planning"/>
 		</Unit>
-		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/other_cars.hpp">
+		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/src/own/lane_costs.hpp">
 			<Option target="path_planning"/>
 		</Unit>
 		<Unit filename="/mnt/sda1/projects/git/udacity_car_nanodegree/term2_new_syllabus/CarND-Path-Planning-Project/CMakeLists.txt">

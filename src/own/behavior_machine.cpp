@@ -1,20 +1,21 @@
 #include "behavior_machine.h"
 
 StateMachine::StateMachine() {
-    mState = new Init();
+    int id_lane = 1; // 0 = left, 1 = center, 2 = right
+    mState = new Init(id_lane);
 }
 
 StateMachine::~StateMachine() {
     delete mState;
 }
 
-Path StateMachine::get_next_path(CarPos &car_pos,
+Path StateMachine::decide_path(CarPos &car_pos,
                             Path &path_remaining,
                             vector<OtherCar> &other_cars,
                             Map &map
                             )
 {
-    return mState->get_next_path(*this,
+    return mState->decide_path(*this,
                                  car_pos,
                                  path_remaining,
                                  other_cars,

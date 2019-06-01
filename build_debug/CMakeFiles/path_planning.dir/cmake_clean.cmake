@@ -5,7 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/path_planning.dir/src/own/behavior_machine.cpp.o"
   "CMakeFiles/path_planning.dir/src/own/behavior_states.cpp.o"
   "CMakeFiles/path_planning.dir/src/own/generate_path.cpp.o"
-  "CMakeFiles/path_planning.dir/src/own/other_cars.cpp.o"
+  "CMakeFiles/path_planning.dir/src/own/lane_costs.cpp.o"
   "path_planning.pdb"
   "path_planning"
 )
