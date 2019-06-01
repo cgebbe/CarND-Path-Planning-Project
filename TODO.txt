@@ -211,3 +211,51 @@ private:
 	possible_next_states
 
 
+
+
+ChangeLane(id_lane+1)
+	-> get_cost
+		if id_lane < 0 or id_lane > 2
+			cost_feasible = 1
+		else
+			cost_feasible = 0
+		
+		if is_lane_safe (for change)
+			cost_safety = 0
+		else
+			cost_safety = 1
+			
+		cost_efficiency = (100-lane_speed)/100 --> between 0,1
+		
+		cost_freedom = 0 (if center lane), else cost_freedom=1
+		cost = 	  scale_cost(cost_feasible, 4)
+				+ scale_cost(cost_safety, 3)
+				+ scale_cost(cost_efficiency, 2)
+				+ scale_cost(cost_freedom, 1)
+			
+	-> get next_path(id_lane+1)
+	
+	
+	
+	
+	only in KeepLane-state:
+	next_states = KeepLane(id_lane), ChangeLane(id_lane+1), ChangeLane(id_lane-1)
+	cost_last = 9999999
+	for (state in next_states):
+		cost_state = state.get_cost()
+		if cost_state<cost_last:
+			next_state = state
+			cost_last = cost_last
+	
+	this-> setState(state)
+			
+	
+	
+	
+	
+	
+At the beginning of each cycle:
+	decide_path()
+		decide next state
+		next_state.get_path
+	

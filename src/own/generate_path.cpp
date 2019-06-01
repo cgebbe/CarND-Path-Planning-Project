@@ -75,7 +75,7 @@ struct::Path smoothen_path(struct::Path anchor_points,
     }
 
     // convert sampled points from vehicle CS to map CS
-    Path path_sampled_in_MCS = convert_VCS_to_MCS(path_sampled_VCS, last_pos);
+    Path path_sampled_in_MCS = convert_VCS_to_MCS(path_sampled_VCS,     last_pos);
 
     return path_sampled_in_MCS;
 }

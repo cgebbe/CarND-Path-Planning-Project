@@ -114,6 +114,11 @@ vector<double> convert_xy_to_sd(double x, double y, double theta, struct::Map& m
 vector<double> convert_sd_to_xy(double s, double d, struct::Map& map) {
     bool use_new_version = true;
     if (use_new_version ) {
+        // prevent strange errors at end of track
+        if (s > 64959.9) {
+            s -= 6945.9;
+        }
+
         // get position
         double x_center = map.spline_x(s);
         double y_center = map.spline_y(s);

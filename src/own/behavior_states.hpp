@@ -51,6 +51,10 @@ class KeepLane : public State {
 public:
     KeepLane(int id_lane);
     virtual ~KeepLane();
+    virtual double get_cost(CarPos& car_pos,
+                           Path& path_remaining,
+                           vector<OtherCar>& other_cars,
+                           Map& map);
 private:
     virtual State* decide_state(CarPos& car_pos,
                                Path& path_remaining,
@@ -60,11 +64,8 @@ private:
                           Path& path_remaining,
                           vector<OtherCar>& other_cars,
                           Map& map);
-    virtual float get_cost(CarPos& car_pos,
-                           Path& path_remaining,
-                           vector<OtherCar>& other_cars,
-                           Map& map);
     int m_id_lane;
+    int m_cnt_runs;
 };
 
 
@@ -73,6 +74,10 @@ class ChangeLane : public State {
 public:
     ChangeLane(int id_lane);
     virtual ~ChangeLane();
+    virtual double get_cost(CarPos& car_pos,
+                           Path& path_remaining,
+                           vector<OtherCar>& other_cars,
+                           Map& map);
 private:
     virtual State* decide_state(CarPos& car_pos,
                                Path& path_remaining,
@@ -82,10 +87,6 @@ private:
                           Path& path_remaining,
                           vector<OtherCar>& other_cars,
                           Map& map);
-    virtual float get_cost(CarPos& car_pos,
-                           Path& path_remaining,
-                           vector<OtherCar>& other_cars,
-                           Map& map);
     int m_id_lane;
 };
 
