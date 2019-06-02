@@ -118,7 +118,7 @@ State* KeepLane::decide_state(CarPos &car_pos, Path &path_remaining, vector<Othe
     }
 
     // At least keep lane for a few cycles (to avoid changing two lanes at same time)
-    if (m_cnt_runs <= 3) {
+    if (m_cnt_runs <= 6) {
         return this;
     }
 
@@ -187,10 +187,18 @@ double KeepLane::get_cost(CarPos &car_pos,
     double cost_feasible = 0;
     double cost_safety = 0;
 
+    // is lane free ? -> currently not used, but might be nice addon...
+    double s_diff = get_distance_to_next_car(m_id_lane, car_pos, other_cars);
+    double cost_lane_free = max(0.,1-s_diff/150.);
+
     // the lower the lane speed, the worse (=higher costs)
     TargetSpeed lane_speed = get_target_speed_for_lane(other_cars,car_pos,m_id_lane);
     double lane_speed_in_mph = lane_speed.v_in_meter_per_s / 0.44704;
-    double cost_efficiency = (100-lane_speed_in_mph)/100; // in interval [0,1]
+    double cost_speed = (100-lane_speed_in_mph)/100; // in interval [0,1]
+
+    // choose either speed or lane_free as efficiency
+    double cost_efficiency = cost_lane_free;
+
 
     // center lane speed is best because of most freedo
     double cost_freedom = (m_id_lane==1) ? 0 : 1;
@@ -220,24 +228,27 @@ State* ChangeLane::decide_state(CarPos &car_pos, Path &path_remaining, vector<Ot
 }
 
 Path ChangeLane::get_path(CarPos& car_pos,
-                        Path& path_remaining,
-                        vector<OtherCar>& other_cars,
-                        Map& map)
+                          Path& path_remaining,
+                          vector<OtherCar>& other_cars,
+                          Map& map)
 {
     // define anchor points to keep lane
     struct::Path anchor_points;
     int num_points = 2;
     for (int i = 0; i < num_points; ++i) {
-        double next_s = car_pos.s + (i+1)*40;
+        double next_s = car_pos.s + (i+1)*60;
         double next_d = lane2d(m_id_lane);
         std::vector<double> xy = convert_sd_to_xy(next_s, next_d, map);
         anchor_points.x.push_back(xy[0]);
         anchor_points.y.push_back(xy[1]);
     }
 
-    // get target speed for lane and plan 1 seconds ahead
-    TargetSpeed end = get_target_speed_for_lane(other_cars, car_pos, m_id_lane);
-    end.t = 0.8;
+    // set target speed for lane as current car speed
+    // TargetSpeed end = get_target_speed_for_lane(other_cars, car_pos, m_id_lane);
+    TargetSpeed end;
+    //end.v_in_meter_per_s = min(45 * 0.44704, car_pos.speed_in_meter_per_s);
+    end.v_in_meter_per_s = car_pos.speed_in_meter_per_s;
+    end.t = 1.0;
     //end.v_in_meter_per_s -= 5 * 0.44704;
 
     // based on anchor points and remaining path, estimate actual path
@@ -274,12 +285,15 @@ double ChangeLane::get_cost(CarPos &car_pos, Path &path_remaining, vector<OtherC
 
     // is lane free ? -> currently not used, but might be nice addon...
     double s_diff = get_distance_to_next_car(m_id_lane, car_pos, other_cars);
-    double cost_eff_free = max(0.,1-s_diff/100.);
+    double cost_lane_free = max(0.,1-s_diff/150.);
 
     // the lower the lane speed, the worse (=higher costs)
     TargetSpeed lane_speed = get_target_speed_for_lane(other_cars,car_pos,m_id_lane);
     double lane_speed_in_mph = lane_speed.v_in_meter_per_s / 0.44704;
-    double cost_efficiency = (100-lane_speed_in_mph)/100; // in interval [0,1]
+    double cost_speed = (100-lane_speed_in_mph)/100; // in interval [0,1]
+
+    // choose either speed or lane_free as efficiency
+    double cost_efficiency = cost_lane_free;
 
     // center lane is best = lowest cost because of additional freedom
     double cost_freedom = (m_id_lane==1) ? 0 : 1;

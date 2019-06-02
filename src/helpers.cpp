@@ -112,7 +112,7 @@ vector<double> convert_xy_to_sd(double x, double y, double theta, struct::Map& m
 
 // Transform from Frenet s,d coordinates to Cartesian x,y
 vector<double> convert_sd_to_xy(double s, double d, struct::Map& map) {
-    bool use_new_version = true;
+    bool use_new_version = false;
     if (use_new_version ) {
         // prevent strange errors at end of track
         if (s > 64959.9) {

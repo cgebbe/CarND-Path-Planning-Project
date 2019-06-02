@@ -69,7 +69,7 @@ struct::Path smoothen_path(struct::Path anchor_points,
             velocity -= 0.15;
         }
         //double velocity = v_per_dt(t);
-        x_VCS += dt * velocity * correction_x_per_distance;
+        x_VCS += dt * velocity * pow(correction_x_per_distance,1);
         path_sampled_VCS.x.push_back(x_VCS);
         path_sampled_VCS.y.push_back(y_per_x_in_VCS(x_VCS));
     }

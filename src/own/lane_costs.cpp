@@ -29,7 +29,7 @@ TargetSpeed get_target_speed_for_lane(vector<OtherCar>& other_cars,
         // Otherwise, adjust speed to speed of nearest car in front
         // Also take into account distance, so that it still accelerates if farer away than target distance
         double s_diff = nearest_car.s - car_pos.s;
-        double target_distance = 15;
+        double target_distance = 20;
         double factor_distance = 1.0 * s_diff / target_distance;
         double nearest_car_v_in_meter_per_s = sqrt(pow(nearest_car.vx,2) + pow(nearest_car.vy,2) );
         target.v_in_meter_per_s = factor_distance * nearest_car_v_in_meter_per_s;
@@ -58,7 +58,7 @@ double get_distance_to_next_car(int id_lane,
         s_diff = nearest_car.s - car_pos.s;
     }
     else {
-        s_diff = 100; // as a maximum
+        s_diff = 150; // as a maximum
     }
     return s_diff ;
 }
@@ -85,7 +85,7 @@ bool is_lane_safe(int id_lane,
             double v_diff = nearest_car_v_in_meter_per_s - car_pos.speed_in_meter_per_s;
             double s_diff = nearest_car.s - car_pos.s;
             double t_until_crash = - s_diff / v_diff;
-            bool is_crash_soon = (0< t_until_crash && t_until_crash < 1.5);
+            bool is_crash_soon = (0<= t_until_crash && t_until_crash < 1.5);
 
             // decide whether lane is safe
             if (abs(s_diff) < 10 || is_crash_soon) {
@@ -112,10 +112,10 @@ OtherCar get_nearest_car_in_lane(vector<OtherCar>& other_cars,
     // find nearest car in lane
     double d = lane2d(id_lane);
     double d_tol = 3;
-    double s_last = 100; // threshold, ignore anything which is farer away
+    double s_last = 150; // threshold, ignore anything which is farer away
     for (auto car : other_cars) {
         if (d-d_tol <= car.d && car.d <= d+d_tol) { // goal lane
-            if (factor_reverse * (car.s - car_pos.s) > 0) { // if car is in front / behind
+            if (factor_reverse * (car.s - car_pos.s) >= 0) { // if car is in front / behind
                 double s_diff = abs(car.s - car_pos.s);
                 if (s_diff < s_last) { // if car is nearer than any previous car
                     s_last = s_diff;
