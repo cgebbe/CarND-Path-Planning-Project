@@ -1,145 +1,93 @@
-# CarND-Path-Planning-Project
-Self-Driving Car Engineer Nanodegree Program
-   
-### Simulator.
-You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2).  
+# Path Planning project from udacity self-driving car nanodegree
 
-To run the simulator on Mac/Linux, first make the binary file executable with the following command:
-```shell
-sudo chmod u+x {simulator_file_name}
-```
+See instructions on https://github.com/udacity/CarND-Path-Planning-Project
 
-### Goals
-In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
+# Description of finished product
 
-#### The map of the highway is in data/highway_map.txt
-Each waypoint in the list contains  [x,y,s,dx,dy] values. x and y are the waypoint's map coordinate position, the s value is the distance along the road to get to that waypoint in meters, the dx and dy values define the unit normal vector pointing outward of the highway loop.
+The finished product can be separated into two modules, which are going to be described in more detail in the following
 
-The highway's waypoints loop around so the frenet s value, distance along the road, goes from 0 to 6945.554.
-
-## Basic Build Instructions
-
-1. Clone this repo.
-2. Make a build directory: `mkdir build && cd build`
-3. Compile: `cmake .. && make`
-4. Run it: `./path_planning`.
-
-Here is the data provided from the Simulator to the C++ Program
-
-#### Main car's localization Data (No Noise)
-
-["x"] The car's x position in map coordinates
-
-["y"] The car's y position in map coordinates
-
-["s"] The car's s position in frenet coordinates
-
-["d"] The car's d position in frenet coordinates
-
-["yaw"] The car's yaw angle in the map
-
-["speed"] The car's speed in MPH
-
-#### Previous path data given to the Planner
-
-//Note: Return the previous list but with processed points removed, can be a nice tool to show how far along
-the path has processed since last time. 
-
-["previous_path_x"] The previous list of x points previously given to the simulator
-
-["previous_path_y"] The previous list of y points previously given to the simulator
-
-#### Previous path's end s and d values 
-
-["end_path_s"] The previous list's last point's frenet s value
-
-["end_path_d"] The previous list's last point's frenet d value
-
-#### Sensor Fusion Data, a list of all other car's attributes on the same side of the road. (No Noise)
-
-["sensor_fusion"] A 2d vector of cars and then that car's [car's unique ID, car's x position in map coordinates, car's y position in map coordinates, car's x velocity in m/s, car's y velocity in m/s, car's s position in frenet coordinates, car's d position in frenet coordinates. 
-
-## Details
-
-1. The car uses a perfect controller and will visit every (x,y) point it recieves in the list every .02 seconds. The units for the (x,y) points are in meters and the spacing of the points determines the speed of the car. The vector going from a point to the next point in the list dictates the angle of the car. Acceleration both in the tangential and normal directions is measured along with the jerk, the rate of change of total Acceleration. The (x,y) point paths that the planner recieves should not have a total acceleration that goes over 10 m/s^2, also the jerk should not go over 50 m/s^3. (NOTE: As this is BETA, these requirements might change. Also currently jerk is over a .02 second interval, it would probably be better to average total acceleration over 1 second and measure jerk from that.
-
-2. There will be some latency between the simulator running and the path planner returning a path, with optimized code usually its not very long maybe just 1-3 time steps. During this delay the simulator will continue using points that it was last given, because of this its a good idea to store the last points you have used so you can have a smooth transition. previous_path_x, and previous_path_y can be helpful for this transition since they show the last points given to the simulator controller with the processed points already removed. You would either return a path that extends this previous path or make sure to create a new path that has a smooth transition with this last path.
-
-## Tips
-
-A really helpful resource for doing this project and creating smooth trajectories was using http://kluge.in-chemnitz.de/opensource/spline/, the spline function is in a single hearder file is really easy to use.
-
----
-
-## Dependencies
-
-* cmake >= 3.5
-  * All OSes: [click here for installation instructions](https://cmake.org/install/)
-* make >= 4.1
-  * Linux: make is installed by default on most Linux distros
-  * Mac: [install Xcode command line tools to get make](https://developer.apple.com/xcode/features/)
-  * Windows: [Click here for installation instructions](http://gnuwin32.sourceforge.net/packages/make.htm)
-* gcc/g++ >= 5.4
-  * Linux: gcc / g++ is installed by default on most Linux distros
-  * Mac: same deal as make - [install Xcode command line tools]((https://developer.apple.com/xcode/features/)
-  * Windows: recommend using [MinGW](http://www.mingw.org/)
-* [uWebSockets](https://github.com/uWebSockets/uWebSockets)
-  * Run either `install-mac.sh` or `install-ubuntu.sh`.
-  * If you install from source, checkout to commit `e94b6e1`, i.e.
-    ```
-    git clone https://github.com/uWebSockets/uWebSockets 
-    cd uWebSockets
-    git checkout e94b6e1
-    ```
-
-## Editor Settings
-
-We've purposefully kept editor configuration files out of this repo in order to
-keep it as simple and environment agnostic as possible. However, we recommend
-using the following settings:
-
-* indent using spaces
-* set tab width to 2 spaces (keeps the matrices in source code aligned)
-
-## Code Style
-
-Please (do your best to) stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).
-
-## Project Instructions and Rubric
-
-Note: regardless of the changes you make, your project must be buildable using
-cmake and make!
+ - A path planner, which generates smooth paths that do not violate the speed, acceleration and jerk limits
+ - A behavior planner, which decides what to do next, i.e. keep lane or change lane 
 
 
-## Call for IDE Profiles Pull Requests
 
-Help your fellow students!
+## Path planner - Generation of smooth paths
 
-We decided to create Makefiles with cmake to keep this project as platform
-agnostic as possible. Similarly, we omitted IDE profiles in order to ensure
-that students don't feel pressured to use one IDE or another.
+### Generating of path in (x,y) coordinates
+For the generation of smooth paths I followed the video tutorial by udacity (Project Q&A). It follows these steps:
 
-However! I'd love to help people get up and running with their IDEs of choice.
-If you've created a profile for an IDE that you think other students would
-appreciate, we'd love to have you add the requisite profile files and
-instructions to ide_profiles/. For example if you wanted to add a VS Code
-profile, you'd add:
+1. Generate a few anchor points in Frenet-coordinates, which are spaced approximately 30m away from each other.
+2. Convert those to x-y-coordinates
+3. Append those anchor points to the points from the remaining path (given by the simulator)
+4. Convert this combined path from the map coordinate system to the egovehicle coordinate system
+5. Fit a spline to y(x) - in map coordinates
+6. Sample points from y(x)-spline given a certain velocity (see next subsection for more details)
+7. Convert those sampled points from egovehicle coordinate system back to map coordinate system
 
-* /ide_profiles/vscode/.vscode
-* /ide_profiles/vscode/README.md
+A new path was only generated, when there were less than ~8 points in the remaining path left. That means, that the generated path is always completely driven and there is no collision check or similar in between the path generations. Since this is a risk, the generated path is so short, that it can be driven in the next 0.5-1 second.
 
-The README should explain what the profile does, how to take advantage of it,
-and how to install it.
+### Deciding speed in driving path, i.e. fix (x,y,t)-coordinates
 
-Frankly, I've never been involved in a project with multiple IDE profiles
-before. I believe the best way to handle this would be to keep them out of the
-repo root to avoid clutter. My expectation is that most profiles will include
-instructions to copy files to a new location to get picked up by the IDE, but
-that's just a guess.
+An important decision is how wide apart the sampled points shall be. In this solution, the starting velocity is fixed by the remaining path points and the end velocity is given as a target. The velocity in between is newly defined for each sampled path points with the constraint that it can only deviate +/- 0.15 from the velocity chosen for the previously sampled point.
 
-One last note here: regardless of the IDE used, every submitted project must
-still be compilable with cmake and make./
+This solution is also very close to the presented udacity video tutorial.
 
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
 
+## Behavior planner - Decision on when to change lanes
+
+The behavior planner is implemented as a simple finite state machine (see state design pattern https://en.wikipedia.org/wiki/State_pattern) with three states:
+
+ - Init(ialization) state
+ - KeepLane state
+ - ChangeLane state
+ 
+Every time the behavior planner is called, it performs two actions:
+ 1. Determine the next best transition state and switching to it
+ 2. Let the new state plan the path
+
+## Determining the next best state
+
+For the Init state and the ChangeLane state, determining the next best state is implemented in a very simple manner: Both states shall plan the path exactly once and then transition to the KeepLane state.
+
+For the KeepLane state, it is more complex: There are three possible transition states at every moment: KeepLane, ChangeLane to the left, ChangeLane to the right. Each of these possible transition states are evaluated by calculating a cost for them. These costs comprise:
+
+ - feasiblity: Is this action possible? For example, when the egovehicle is already on the right lane, it cannot change more right
+ - safety: Is this action safe? While keeping the lane is always considered safe, you have to make sure that you don't crash into another vehicle when changing lanes. Therefore, the distance to the nearest car as well as the time until collision is taken into account.
+ - efficiency: Will the egovehicle be faster in another lane? This is measured by using the distance to the next car in front of the vehicle
+ - degree of freedom: If two lanes have exactly the same costs, always choose the middle lane, because it offers a higher degree of freedom in the future.
+ 
+The costs listed above are summed up in a hierarchical manner and the state with the lowest cost is chosen as the next state.
+
+## Let new state plan path
+
+All states plan the path as described above, i.e. by keeping the points from the remaining path, adding anchor points and setting a target velocity.
+
+The KeepLane state sets two anchor points in the current lane. It sets the target velocity close to the velocity of the car in the front (if there is one). If the egovehicle is still far way from the nearest car in front, the target velocity will be slightly higher. In contrast, it will be slightly lower, if the distance is already below a certain threshold. The maximum target velocity is always set to 47.5mph.
+
+The ChangeLane state sets two anchor points in the lane to change to, which are 60m away from the current egovehicle position. Otherwise, the lateral acceleration was too high in curves. Moreover, the target velocity is set to the current velocity of the car. Otherwise, the car might accelerate quicly while the car in the front performs a break which lead to a collision.
+
+The initialization exists only for the following reason: As described above, smooth path are generated by taking into account the velocity of the last points of the remaining path. However, at the very beginning, there is no remaining path, so we have to fake one. Otherwise, it sets the path in the same way as the KeepLane state. I believe, that I could delete this state through slightly rewriting the smooth_path function.
+
+
+
+# What I also tried
+
+The above solution presents the final product, but there were many things I tried, which did not end up working. However, it might be interesting for others to read what has not worked and why.
+
+## Path planner - Generation of smooth paths
+
+### Generating of path in (x,y) coordinates
+
+I don't particularly like the current solution: It would result in invalid acceleration values if the car drives faster or if the curves are tighter. Thus, I tried two more general solutions:
+
+- Given a few anchor points, you could fit a constrained B-Spline through them such that the derivatives of the B-Spline, which represent the velocity, acceleration and jerk, are within certain limits. However, I did not find a library to do that and writing one by myself would take a serious amount of time...
+- Another approach I actually tried was to have anchor points as the goal for a motion controller. The motion controller would consider [yaw, dyaw, vel, dvel=acc, ddvel=jerk]. Yaw and Vel would be fed as a target (e.g. next waypoint 30m ahead). dyaw and ddvel would be set by the controller. I implemented a simple P-controller, which resulted the car to reach incredibly high yaw and acceleration values quickly. Looking back, I should have known much better. I guess I would need a twice integrative controller (I^2 ?) or a model predictive control to actual succeed with this approach. Since those types of control are not easy to implement, I dropped this approach.
+
+### Deciding speed in driving path, i.e. fix (x,y,t)-coordinates
+
+In the current approach, the velocity is allowed to change slightly between each sampled waypoint. In contrast to that, I also tried to fit a spline through the initial and target velocity and sample the velocity from that spline. While the resulting paths were even smoother than the current implementation, it became very difficult to avoid too high acceleration values when e.g. a car in front breaked.
+
+# Future work
+
+ - Currently, the egovehicle slightly deaccelerates when changing the lanes even though it should keep a constant velocity. I believe this is due to the fact that the velocity in curves is set slightly lower to prevent speeding up in curves. While it does not look smooth, the resulting trajecotry is within the permitted acceleration values, so I do not care that much about it.
+ - Sometimes, the egovehicle drives itself in a deadlock. For example, the car can be in the right lane, with another car closely in front. The egovehicle cannot easily change lanes, because there is a car in the middle lane right left to the egovehicle. If the other car in the middle lane and the car in the front drive at exactly the same speed, the egovehicle will simply follow the car in the front, even if it drives super slowly. This situation could be resolved, if the egovehicle deaccelerates and then changes from the right to the left lane. However, such a maneuever is significantly complicated than the current simple logic would allow, thus I did not implement it.
