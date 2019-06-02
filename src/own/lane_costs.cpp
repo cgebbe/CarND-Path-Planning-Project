@@ -85,7 +85,7 @@ bool is_lane_safe(int id_lane,
             double v_diff = nearest_car_v_in_meter_per_s - car_pos.speed_in_meter_per_s;
             double s_diff = nearest_car.s - car_pos.s;
             double t_until_crash = - s_diff / v_diff;
-            bool is_crash_soon = (0<= t_until_crash && t_until_crash < 1.5);
+            bool is_crash_soon = (0<= t_until_crash && t_until_crash < 2.5);
 
             // decide whether lane is safe
             if (abs(s_diff) < 10 || is_crash_soon) {

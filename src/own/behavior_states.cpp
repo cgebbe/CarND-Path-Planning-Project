@@ -117,6 +117,12 @@ State* KeepLane::decide_state(CarPos &car_pos, Path &path_remaining, vector<Othe
         return next_state;
     }
 
+    // if there is still a remaining path, first complete this cycle. Otherwise lanechange has old info
+    if (path_remaining.x.size() >= 8) {
+        // if remaining path still has multiple points, simply return it
+        return this;
+    }
+
     // At least keep lane for a few cycles (to avoid changing two lanes at same time)
     if (m_cnt_runs <= 6) {
         return this;
@@ -142,11 +148,14 @@ Path KeepLane::get_path(CarPos& car_pos,
                         vector<OtherCar>& other_cars,
                         Map& map)
 {
+
+    // if there is still a remaining path, first complete this cycle. Otherwise lanechange may have old info
     if (path_remaining.x.size() >= 8) {
         // if remaining path still has multiple points, simply return it
         return path_remaining;
     }
     else {
+
         // state has generated a new path once...
         m_cnt_runs++;
 
