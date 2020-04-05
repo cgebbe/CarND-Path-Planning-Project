@@ -52,7 +52,7 @@ For the KeepLane state, it is more complex: There are three possible transition 
 
 The costs listed above are summed up in a hierarchical manner and the state with the lowest cost is chosen as the next state.
 
-## Let new state plan path
+### Let new state plan path
 
 All states plan the path as described above, i.e. by keeping the points from the remaining path, adding anchor points and setting a target velocity.
 
